@@ -1,0 +1,48 @@
+{
+  "name": "auth",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Authorization with Token and Refresh Token",
+  "main": "dist/main.js",
+  "repository": "git@github.com-helionogueir:helionogueir/auth.git",
+  "author": "Helio Nogueira <helio.nogueir@gmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/main.ts",
+    "build": "tsc --build --verbose",
+    "lint": "eslint ./src --ext .ts",
+    "lint:fix": "yarn lint --fix",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write .",
+    "clean": "rm -rf .storage/database prisma/migrations node_modules dist .env"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "2.4.6",
+    "@types/cors": "2.8.17",
+    "@types/express": "5.0.0",
+    "@types/jsonwebtoken": "9.0.9",
+    "@types/lodash": "4.17.16",
+    "@types/node": "22.13.9",
+    "eslint": "9.21.0",
+    "eslint-config-prettier": "10.0.2",
+    "eslint-plugin-prettier": "5.2.3",
+    "eslint-plugin-unused-imports": "4.1.4",
+    "prettier": "3.5.3",
+    "prisma": "6.4.1",
+    "tsx": "4.19.3",
+    "typescript": "5.7.3",
+    "typescript-eslint": "8.26.0"
+  },
+  "dependencies": {
+    "@prisma/client": "6.4.1",
+    "bcryptjs": "3.0.2",
+    "cors": "2.8.5",
+    "dotenv": "16.4.7",
+    "express": "4.21.2",
+    "i18next": "24.2.2",
+    "i18next-browser-languagedetector": "8.0.4",
+    "jsonwebtoken": "9.0.2",
+    "lodash": "4.17.21"
+  }
+}

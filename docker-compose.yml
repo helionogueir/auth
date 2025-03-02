@@ -1,0 +1,90 @@
+services:
+  base: &BASE
+    image: node:22
+    working_dir: /usr/src/app
+    volumes:
+      - .:/usr/src/app
+
+  install:
+    <<: *BASE
+    command: /bin/bash -c "yarn install --immutable && touch /tmp/yarn_installed"
+    healthcheck:
+      test: ['CMD', 'test', '-f', '/tmp/yarn_installed']
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  database:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: account
+      MYSQL_USER: auth
+      MYSQL_PASSWORD: auth
+      MYSQL_PORT: 3306
+      TZ: UTC
+    volumes:
+      - ./.storage/database:/var/lib/mysql
+    ports:
+      - '3306:3306'
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'mysqladmin',
+          'ping',
+          '-h',
+          'localhost',
+          '-u',
+          'root',
+          '-p$MYSQL_ROOT_PASSWORD',
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  lint:
+    <<: *BASE
+    command: /bin/bash ./.scripts/lint.sh
+    depends_on:
+      install:
+        condition: service_completed_successfully
+
+  format:
+    <<: *BASE
+    command: /bin/bash ./.scripts/format.sh
+    depends_on:
+      install:
+        condition: service_completed_successfully
+
+  tests:
+    <<: *BASE
+    command: /bin/bash ./.scripts/tests.sh
+    depends_on:
+      install:
+        condition: service_completed_successfully
+
+  tests-coverage:
+    <<: *BASE
+    command: /bin/bash ./.scripts/tests-coverage.sh
+    depends_on:
+      install:
+        condition: service_completed_successfully
+
+  build:
+    <<: *BASE
+    command: /bin/bash ./.scripts/build.sh
+    depends_on:
+      install:
+        condition: service_completed_successfully
+
+  provisioning:
+    <<: *BASE
+    command: /bin/bash ./.scripts/provisioning.sh
+    depends_on:
+      install:
+        condition: service_completed_successfully
+      database:
+        condition: service_healthy
+        restart: true

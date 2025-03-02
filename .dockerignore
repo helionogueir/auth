@@ -1,0 +1,21 @@
+# ide
+.vscode
+
+# test
+coverage
+
+# build
+dist
+
+# node
+node_modules
+yarn.lock
+paclage-lock.json
+
+# docker
+docker-compose.yml
+.dockerignore
+
+# docs
+LICENSE
+*.md

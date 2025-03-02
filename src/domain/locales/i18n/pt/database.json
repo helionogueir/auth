@@ -1,0 +1,4 @@
+{
+  "notFound": "{{fieldname}} não encontrado",
+  "invalid": "{{fieldname}} inválido"
+}

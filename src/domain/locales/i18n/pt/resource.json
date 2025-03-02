@@ -1,0 +1,9 @@
+{
+  "C_200_0200": "Busca realizada com sucesso",
+  "C_201_0201": "Registro criado com sucesso",
+  "C_204_0204": "Registro removido com sucesso",
+  "C_400_0400": "Parametro não encontrado",
+  "C_401_0401": "Usuário não autorizado",
+  "C_404_0404": "Pedido não encontrado",
+  "C_500_0500": "Erro interno do servidor"
+}

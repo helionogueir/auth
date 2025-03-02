@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "prisma.prisma",
+        "esbenp.prettier-vscode",
+        "styled-components.vscode-styled-components",
+        "ms-vscode.vscode-typescript-next",
+    ]
+}

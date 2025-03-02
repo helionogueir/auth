@@ -1,0 +1,7 @@
+{
+  "invalid": {
+    "signIn": "Usuário ou senha inválidos",
+    "token": "Token inválido",
+    "refreshToken": "Refresh Token inválido"
+  }
+}
